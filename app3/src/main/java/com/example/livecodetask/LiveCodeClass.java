@@ -1,8 +1,5 @@
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Component;
-//
-//package com.example.demo.string;
-//
+package com.example.livecodetask;
+
 //import java.util.Collection;
 //import java.util.Iterator;
 //
@@ -13,7 +10,6 @@
 //
 //import java.util.Collection;
 //import java.util.List;
-//import java.util.function.Supplier;
 //
 //public class LiveCodeClass {
 //
@@ -28,7 +24,7 @@
 //        @Autowired
 //        public A a;
 //    }
-//
+////
 //    @Component
 //    public class A {
 //        public void methodA() {
@@ -46,29 +42,28 @@
 //        }
 //    }
 //
-//interface C {
-//}
+//    interface C{}
 //
-//@Component
-//public class A implements C {
+//    @Component
+//    public class A implements C{
 //
-//}
+//    }
 //
-//@Component
-//public class B implements C {
+//    @Component
+//    public class B implements C{
 //
-//}
+//    }
 //
-//@Component
-//@RequiredArgsConstructor
-//public class D {
+//    @Component
+//    @RequiredArgsConstructor
+//    public class D {
 //
-//    private final C c;
-//
-//
-//}
+//        private final C c;
 //
 //
+//    }
+
+
 //
 //
 //  void foo() throws Exception {
@@ -80,17 +75,23 @@
 //        finally {
 //            throw new Exception("2");
 //        }
-//
+
 //
 //      //как получить из пойманного исключения другое не изменяя код метода foo
 //  }
 //
+//  void foo(){
+//synchronized (obj){
+//        //что означает этот блок?
+//
+//        void bar(){
+//        obj.add();
+//        }}}
+//Что будет со вторым потоком если он одновременно пойдет в этот метод этого же класса?
 //
 //
 //     public static Supplier<Integer> incrementer(int start) {
 //        return () -> start++;
 //    }
-//
-//
 //
 //}

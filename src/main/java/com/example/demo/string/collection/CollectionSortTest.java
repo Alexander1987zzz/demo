@@ -1,4 +1,4 @@
-package com.example.demo.string;
+package com.example.demo.string.collection;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class CollectionTest {
+public class CollectionSortTest {
     @Data
     @AllArgsConstructor
     public static class Student {

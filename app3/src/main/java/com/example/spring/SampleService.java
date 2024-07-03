@@ -1,11 +1,7 @@
-package com.example.demo.string.spring;
+package com.example.spring;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.jpa.repository.Lock;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -34,7 +30,7 @@ public class SampleService {
         return processData2(data);
     }
 
-//    @Transactional
+    @Transactional
     private List<String> processData2(List<String> data) {
         return someOtherService2.doSomething(data);
     }

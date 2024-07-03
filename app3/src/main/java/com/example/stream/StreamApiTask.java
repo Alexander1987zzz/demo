@@ -1,4 +1,4 @@
-package com.example.demo.string.stream;
+package com.example.stream;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,11 +8,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @SpringBootApplication
 public class StreamApiTask {
+
     @Data
     @AllArgsConstructor
     public static class Book {
@@ -21,6 +23,9 @@ public class StreamApiTask {
         private Double price;
     }
 
+    // 1. Получить список дорогих книг стоимостью более 500.0
+    // 2. Получить список всех уникальных авторов в дорогих книгах
+    // 3. Рассчитать общую стоимость всех дорогих книг
 
     public static void main(String[] args) {
         SpringApplication.run(StreamApiTask.class, args);
@@ -29,10 +34,6 @@ public class StreamApiTask {
                 new Book("Book2", List.of("Author1", "Author2"), 600.0),
                 new Book("Book3", List.of("Author3"), 200.0)
         );
-
-        // 1. Получить список дорогих книг стоимостью более 500.0
-        // 2. Получить список всех уникальных авторов в дорогих книгах
-        // 3. Рассчитать общую стоимость всех дорогих книг
 
         // 1. Отфильтровать книги стоимостью более 50.0
         List<Book> expensiveBooks = books.stream()
@@ -71,7 +72,7 @@ public class StreamApiTask {
                 .map(Book::getPrice)
                 .collect(Collectors.summingDouble(Double::doubleValue));
 
-        Double reduce = expensiveBooks.stream().map(book -> book.getPrice()).reduce((a, b) -> a + b).orElse(null);
+        Optional<Double> reduce = books.stream().map(book -> book.getPrice()).reduce((a, b) -> a + b);
 
         double sum = expensiveBooks.stream()
                 .map(Book::getPrice)
@@ -97,25 +98,12 @@ public class StreamApiTask {
         Stream<String> streamList = list.stream();
         list.add("three");
 
-        boolean result = streamList.anyMatch(e -> e.equals("three"));
+        boolean result = streamList.anyMatch(e -> {
+            return e.equals("three");
+        });
 
         System.out.println(result);
 
 
-
-final Object o1 = new Object();
-final Object o2 = new Object();
-        final String s1 = new String();
-        final String s2 = new String();
-        System.out.println(o1.equals(o2));
-        System.out.println(s1.equals(s2));
-
-
-
     }
-
-
-
-
-
 }

@@ -1,17 +1,14 @@
 
-package com.example.demo.string;
+package com.example.demo.string.lostupdate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  * Entity.
@@ -22,7 +19,7 @@ import org.hibernate.annotations.FetchMode;
 @Data
 @Table(name = "my_order")
 @Accessors(chain = true)
-public class Order<K, T> {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

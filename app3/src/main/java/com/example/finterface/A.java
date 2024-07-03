@@ -1,4 +1,4 @@
-package com.example.demo.string.spring;
+package com.example.finterface;
 
 @FunctionalInterface
 public interface A {

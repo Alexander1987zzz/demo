@@ -1,12 +1,7 @@
-package com.example.demo.string;
+package com.example.demo.string.polindrom;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Objects;
-import java.util.stream.Stream;
 
 @SpringBootApplication
 public class StringPolindromApplication {

@@ -1,4 +1,4 @@
-package com.example.demo.string;
+package com.example.demo.string.fibonachi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
