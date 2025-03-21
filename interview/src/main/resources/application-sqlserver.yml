@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: interview
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=test;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: YourStrong!Passw0rd
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect

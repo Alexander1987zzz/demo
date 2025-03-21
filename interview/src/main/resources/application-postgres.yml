@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: interview
+  datasource:
+    url: jdbc:postgresql://localhost:5422/test?currentSchema=test
+    username: postgres_user
+    password: postgres_pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update

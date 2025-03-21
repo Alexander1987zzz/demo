@@ -1,0 +1,12 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5422/test
+    username: postgres_user
+    password: postgres_pass
+  jpa:
+    hibernate:
+      ddl-auto: update
+

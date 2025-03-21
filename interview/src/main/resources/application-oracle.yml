@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: interview
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:test
+    username: your_oracle_user
+    password: your_oracle_password
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle12cDialect
