@@ -151,6 +151,7 @@ public class StreamApiTask {
                                 .flatMap(otherBook -> otherBook.getAuthors().stream())
                                 .anyMatch(author -> book.getAuthors().contains(author))
                 )
+
                 .toList();
 
 

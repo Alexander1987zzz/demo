@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class Controller {
-    private final OrderService orderService;
+    private final ProductService productService;
     private final TestFeign testFeign;
 
     @GetMapping({"order"})
     public void order(@RequestParam Long id, @RequestParam Integer quantity) {
         Thread thread1 = new Thread(() -> {
-            this.orderService.update(id, quantity);
+            this.productService.update(id, quantity);
         });
         Thread thread2 = new Thread(() -> {
-            this.orderService.update(id, quantity);
+            this.productService.update(id, quantity);
         });
         thread1.start();
         thread2.start();
@@ -27,7 +27,7 @@ public class Controller {
 
     @GetMapping({"update"})
     public void update(@RequestParam Long id, @RequestParam Integer quantity) {
-            this.orderService.update(id, quantity);
+            this.productService.update(id, quantity);
     }
 
     @GetMapping({"feign"})

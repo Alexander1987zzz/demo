@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class OrderService {
+public class ProductService {
 
     @Autowired
-    private OrderRepository orderRepository;
+    private ProductRepository productRepository;
 
     @Transactional
     public void update(Long id, Integer quantity) {
-        orderRepository.findById(id).ifPresent(o -> o.setQuantity(o.getQuantity() + quantity));
+        productRepository.findById(id).ifPresent(p -> p.setQuantity(p.getQuantity() + quantity));
     }
 }

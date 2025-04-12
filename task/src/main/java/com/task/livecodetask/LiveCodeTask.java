@@ -2,8 +2,10 @@ package com.task.livecodetask;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.lang.constant.DynamicConstantDesc;
 import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,6 +13,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
@@ -151,8 +154,10 @@ public class LiveCodeTask {
         brackets.put(')', '(');
         brackets.put('}', '{');
         brackets.put(']', '[');
-        Character c1 = brackets.get(')');
 
+        for (var entry : brackets.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
         Deque<Character> stack = new ArrayDeque<>();
 
         for (char c : input.toCharArray()) {
@@ -173,6 +178,9 @@ public class LiveCodeTask {
 
     public static boolean isValid1(String s) {
         Stack<Character> stack = new Stack<>();
+        Character a = 'd';
+
+
 
         for (char bracket : s.toCharArray()) {
             if (bracket == '(' || bracket == '[' || bracket == '{') {
@@ -191,60 +199,7 @@ public class LiveCodeTask {
         return stack.isEmpty();
     }
 
-    public static boolean isValid2(String s) {
-        int counter1 = 0;
-        int counter2 = 0;
-        int counter3 = 0;
 
-        for (char bracket : s.toCharArray()) {
-            if (bracket == '(' || bracket == '[' || bracket == '{') {
-                counter1++;
-                counter2++;
-                counter3++;
-            } else if (bracket == ')' || bracket == ']' || bracket == '}') {
-                counter1--;
-                counter2--;
-                counter3--;
-            }
-        }
-
-        return counter1 == 0 && counter2 == 0 && counter3 == 0;
-
-    }
-
-    public static boolean isValid3(String s) {
-        int square = 0;
-        int curly = 0;
-        int simply = 0;
-
-        char[] buffer = s.toCharArray();
-
-        for (int i = 0; i < buffer.length; i++) {
-            switch (buffer[i]) {
-                case '(':
-                    simply++;
-                    break;
-                case ')':
-                    simply--;
-                    break;
-                case '[':
-                    square++;
-                    break;
-                case ']':
-                    square--;
-                    break;
-                case '{':
-                    curly++;
-                    break;
-                case '}':
-                    curly--;
-                    break;
-            }
-        }
-
-        return simply == 0 && square == 0 && curly == 0;
-
-    }
 
     public static boolean isValid4(String s) {
         Deque<Character> deque = new LinkedList<>();
@@ -339,7 +294,7 @@ public class LiveCodeTask {
 //        System.out.println(sumElements(arr, 1, 3));
 //        System.out.println(sumElements(arr, 0, 1));
 
-        System.out.println(missingNumber1(arr));
+//        System.out.println(missingNumber1(arr));
 //        System.out.println(sumElements(arr, 3, 5));
 //        int[] ints = calculatePrefixSum(arr);
 //        System.out.println(Arrays.stream(ints).sum());
