@@ -1,4 +1,4 @@
-package com.task.stream;
+package com.interview.streamapi;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -21,8 +21,8 @@ import java.util.stream.Stream;
 
 @SpringBootApplication(scanBasePackageClasses = {
         StreamApiTask.class})
-@EnableJpaRepositories(basePackages = "com.example.spring")
-@EntityScan(value = "com.example.spring")
+@EnableJpaRepositories(basePackages = "com.interview")
+@EntityScan(value = "com.interview")
 @EnableWebMvc
 public class StreamApiTask {
 

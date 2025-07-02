@@ -1,6 +1,6 @@
 package com.interview.lostupdate;
 
-import com.interview.feign.TestFeign;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class Controller {
     private final ProductService productService;
-    private final TestFeign testFeign;
 
-    @GetMapping({"order"})
-    public void order(@RequestParam Long id, @RequestParam Integer quantity) {
+
+    @GetMapping({"product"})
+    public void product(@RequestParam Long id, @RequestParam Integer quantity) {
         Thread thread1 = new Thread(() -> {
             this.productService.update(id, quantity);
         });
@@ -30,8 +30,4 @@ public class Controller {
             this.productService.update(id, quantity);
     }
 
-    @GetMapping({"feign"})
-    public void testFeign() {
-       testFeign.getUnits(null);
-    }
 }
