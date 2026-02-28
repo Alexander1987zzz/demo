@@ -34,13 +34,7 @@ public class PingPong {
 
     public static void main(String[] args) throws InterruptedException {
 
-        final var pong = new PingPong();
-        pong.setName("A");
-        pong.setNum(10);
-        pong.getState(arr, pong);
-        System.out.println(pong.getNum());
-        System.out.println(pong.getName());
-        System.out.println(arr);
+        pingPongWhile();
 
 
     }
@@ -73,6 +67,22 @@ public class PingPong {
         });
         thread1.start();
         thread2.start();
+    }
+
+    public static void concurrentArray() {
+        int[] array1 = {1, 2, 3, 4, 5};
+        char[] array2 = {'a', 'b', 'c', 'd', 'e'};
+
+
+        Thread thread1 = new Thread(() -> {
+
+
+        });
+        Thread thread2 = new Thread(() -> {
+
+
+        });
+
     }
 
     private static final Object lock = new Object();

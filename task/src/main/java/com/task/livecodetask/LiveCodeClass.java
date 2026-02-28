@@ -92,9 +92,7 @@ package com.task.livecodetask;
 
 
 
-//public static Supplier<Integer> incrementer(int start) {
-//        return () -> start++;
-//    }
+
 //
 
 

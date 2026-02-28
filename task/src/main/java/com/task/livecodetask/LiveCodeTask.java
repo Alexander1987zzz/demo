@@ -127,7 +127,7 @@ public class LiveCodeTask {
 
 //todo решение задачи
 
-    public static String getAbsolutePath1(String inputPath) {
+    public static String getAbsolutePath(String inputPath) {
         //решение
         String[] directories = inputPath.split("/");
         Stack<String> stack = new Stack<>();
@@ -230,26 +230,7 @@ public class LiveCodeTask {
 
 
 
-    public static String getAbsolutePath(String inputPath) {
-        Stack<String> stack = new Stack();
 
-
-        String[] actions = inputPath.split("/");
-
-        for (String action : actions) {
-
-            if (action.equals("..")) {
-                stack.pop();
-
-            } else if (action.equals(".")) {
-                continue;
-            } else stack.push(action);
-        }
-
-        return stack.stream().collect(Collectors.joining("/"));
-
-
-    }
 
 
     private static int[] calculatePrefixSum(int[] array) {
@@ -287,9 +268,28 @@ public class LiveCodeTask {
     }
 
 
+    public static String getAbsolutePath(String inputPath) {
+        String[] list = inputPath.split("/");
+        Stack<String> stack = new Stack<>();
+        for (String s: list)
+        {
+            if (s == "..")
+            {
+                stack.pop();
+                continue;
+            }
+            if (s != ".")
+            {
+                stack.push(s);
+            }
+        }
+        return   String.join("/", stack);
+
+    }
+
     public static void main(String[] args) {
 
-//        System.out.println(getAbsolutePath("/var/check/../../test/oneMoreExample"));
+        System.out.println(getAbsolutePath("/var/check/../../test/oneMoreExample"));
         int[] arr = {0, 2, 5, 4, 3, 7, 9, 1};
 //        System.out.println(sumElements(arr, 1, 3));
 //        System.out.println(sumElements(arr, 0, 1));

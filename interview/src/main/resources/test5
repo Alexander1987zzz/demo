@@ -1,0 +1,83 @@
+@Entity
+@Data
+public class Client {
+
+    @Id
+    @Column(name = "id")
+    private Integer id;
+
+    private String name;
+
+    private String surname;
+
+    private Integer balance;
+
+    @OneToMany
+    private List<Cow> cows;
+}
+
+========================
+
+@Entity
+@Data
+public class Cow {
+
+    @Id
+    @Column(columnDefinition = "UUID")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    private String name;
+
+    private Boolean bell;
+
+    @CreationTimestamp
+    private LocalDateTime createDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updateDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Client client;
+}
+
+==========================
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class Service {
+    
+  private ClientRepository clientRepository; 
+    
+  @Transactional
+  public void update(ClientDto clientDto) {
+    clientRepository.findClientById(clientDto.getId())
+        .ifPresent(c -> {
+          log.info("Found client in DB: {}", c); 
+          c.setBalance(c.getBalance() + clientDto.getBalance()); 
+        });
+  }
+}
+
+@RestControllers 
+public Controller {
+ private Service myService;
+
+ @PostMapping("/update") 
+ public void updateUser(ClientDto dto) {
+     myService.update(dto);
+   }
+}
+
+==========================
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class ClientDto {
+
+    private Integer id;
+    private Integer balance;
+}

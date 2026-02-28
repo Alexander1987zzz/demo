@@ -1,0 +1,48 @@
+//acks = 1
+@Slf4j
+@RequiredArgsConstrucor
+public class KafkaSender {
+    private final KafkaTemplate kafkaTemplate;
+
+    @Value("${kafka.topic}")
+    private String topic;
+
+    public void send(Message message) {
+        try {
+            log.info("Attempt to send message {}", message);
+            kafkaTemplate.send(topic, message);
+            log.info("Message succesfully sent");
+        } catch(RuntimeException e) {
+            log.error("Error while sending message", e)
+        }
+    }
+}
+
+==========================
+
+@RequiredArgsConstrucor
+public class KafkaConsumer {
+
+    private final UserService userService;
+
+    @KafkaListener(concurrency = 5, topic = "topic")
+    public void consume(Message message) {
+        userService.register(message);
+}
+
+@RequiredArgsConstrucor
+public class UserService {
+
+    private final UserRegFeignClient userRegisterFeignClient;
+    private final CardRegFeignClient cardRegisterFeignClient;
+
+
+    public void register(Message message) {
+        //logic
+        var userResponce = userRegisterFeignClient.registerUser();
+        //logic
+        if (userResponse.getStatusCode.is2xx) {
+            cardRegisterFeignClient.registerCard();
+        }
+    }
+}

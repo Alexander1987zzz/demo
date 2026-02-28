@@ -2,6 +2,7 @@ package com.interview.payment;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,8 +21,8 @@ public class PaymentService {
         if (request.amount() < 0) {
             throw new RuntimeException();
         }
-        mobileService.sendToOperatorApi(request);
-        notificationService.sendNotification(request.userId());
+        mobileService.sendToOperatorApi(request);//api
+        notificationService.sendNotification(request.userId());//kafka
         Payment entity = mapper.toEntity(request);
         paymentRepository.save(entity);
 

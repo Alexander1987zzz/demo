@@ -15,7 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,12 +43,13 @@ public class StreamApiTask {
     // 2. Получить список всех уникальных авторов в дорогих книгах которые написали не менее 2 дорогих книг
     // 3. Рассчитать общую стоимость всех дорогих книг
 
-    public static void main(String[] args) {
+    public static void main3(String[] args) {
         SpringApplication.run(StreamApiTask.class, args);
         List<Book> books = Arrays.asList(
                 new Book("Book1", List.of("Author1", "Author2"), 800.00),
                 new Book("Book2", List.of("Author1", "Author2"), 600.00),
-                new Book("Book3", List.of("Author3"), 200.00)
+                new Book("Book3", List.of("Author3"), 200.00),
+                new Book("Book4", List.of("Author4"), 700.00)
         );
 
         // 1. Отфильтровать книги стоимостью более 50.0
@@ -114,16 +117,7 @@ public class StreamApiTask {
             return e.startsWith("E");
         });
 
-        List<String> list = new ArrayList<>();
-        list.add("one");
-        list.add("two");
 
-        Stream<String> streamList = list.stream();
-
-        list.add("three");
-
-        boolean result = streamList.anyMatch(e -> e.equals("three"));
-        System.out.println(result);
 
 
         Map<String, String> map = new TreeMap<>();
@@ -168,7 +162,7 @@ public class StreamApiTask {
                 .entrySet().stream()
                 .filter(entry -> entry.getValue() >= 2)
                 .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+                .toList();
 
         Map<String, Long> collect = books.stream()
                 .filter(book -> book.getPrice() > 500.00)
@@ -195,4 +189,41 @@ public class StreamApiTask {
         System.out.println("\nTotal cost: " + totalCost);
 
 
-    }}
+    }
+
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("one");
+        list.add("two");
+
+        Stream<String> streamList = list.stream();
+
+
+        list.add("three");
+
+        boolean result = streamList.anyMatch(e -> e.equals("three"));
+//        System.out.println(result);
+
+        List<Book> books = Arrays.asList(
+                new Book("Book1", List.of("Author1", "Author2"), 800.00),
+                new Book("Book2", List.of("Author3", "Author4"), 600.00),
+                new Book("Book3", List.of("Author3"), 200.00),
+                new Book("Book4", List.of("Author2", "Author5"), 700.00),
+                new Book("Book5", List.of("Author4"), 300.00)
+        );
+        // Get a list of all unique authors who have written at least two books with a price greater than 500.00
+        List<String> uniqueAuthors = books.stream()
+                .filter(book -> book.getPrice() > 500.00)
+                .flatMap(book -> book.getAuthors().stream())
+                .collect(groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() >= 2)
+                .map(Map.Entry::getKey)
+                .toList();
+        System.out.println(uniqueAuthors);
+    }
+
+//    public static Supplier<Integer> incrementer(int start) {
+//        return () -> start++;
+//    }
+}
